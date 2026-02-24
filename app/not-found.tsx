@@ -1,3 +1,24 @@
+export const metadata = {
+  title: "404 - Page Not Found",
+  description:
+    "This page does not exist. The requested Note Hub page could not be found.",
+  url: "",
+  openGraph: {
+    title: "404 - Page Not Found",
+    description:
+      "This page does not exist. The requested Note Hub page could not be found.",
+    url: "",
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        width: 1200,
+        height: 630,
+        alt: "404 - Page Not Found",
+      },
+    ],
+  },
+};
+
 export default function NotFound() {
   return (
     <div

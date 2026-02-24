@@ -9,6 +9,7 @@ import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
+import Link from "next/link";
 
 type Props = {
   tag: string;
@@ -19,7 +20,7 @@ export default function NotesClient({ tag }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
+  // const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   const { data, isLoading } = useQuery({
@@ -51,9 +52,13 @@ export default function NotesClient({ tag }: Props) {
             setPage={setCurrentPage}
           />
         )}
-        <button type="button" className={css.button} onClick={openModal}>
+        <Link
+          href="/notes/action/create"
+          aria-label="Create new note"
+          className={css.button}
+        >
           Create note +
-        </button>
+        </Link>
       </div>
 
       {notes.length > 0 && <NoteList notes={notes} />}
@@ -62,7 +67,7 @@ export default function NotesClient({ tag }: Props) {
       )}
       {isModalOpen && (
         <Modal onClose={closeModal}>
-          <NoteForm onCancel={closeModal} />
+          <NoteForm />
         </Modal>
       )}
     </div>

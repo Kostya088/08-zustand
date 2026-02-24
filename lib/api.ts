@@ -51,7 +51,7 @@ export async function fetchNoteById(id: Note["id"]) {
   return data;
 }
 
-interface CreateNoteProps {
+export interface CreateNoteProps {
   title: string;
   content: string;
   tag: string;

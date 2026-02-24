@@ -1,28 +1,35 @@
-import { fetchNotes } from "../../../../lib/api";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
 import NotesClient from "./Notes.client";
+import { Metadata } from "next";
 
 type Props = {
   params: Promise<{ slug: string[] }>;
 };
 
+export async function generateMetaData({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const tag = slug[0] || "all";
+  return {
+    title: `Filter: ${tag}`,
+    description: `All notes with ${tag} tag`,
+    openGraph: {
+      title: `Filter: ${tag}`,
+      description: `All notes with ${tag} tag`,
+      images: [
+        {
+          url: `https://ac.goit.global/fullstack/react/notehub-og-meta.jpg`,
+          width: 1200,
+          height: 630,
+          alt: "Note Hub",
+        },
+      ],
+      type: "website",
+    },
+  };
+}
+
 export default async function Notes({ params }: Props) {
   const { slug } = await params;
   const tag = slug[0] || "all";
-  const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: ["notes", 1, tag],
-    queryFn: () => fetchNotes({ page: 1, query: "", tag }),
-  });
-
-  return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <NotesClient tag={tag} />
-    </HydrationBoundary>
-  );
+  return <NotesClient tag={tag} />;
 }
