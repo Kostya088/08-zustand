@@ -7,8 +7,6 @@ import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
-import Modal from "@/components/Modal/Modal";
-import NoteForm from "@/components/NoteForm/NoteForm";
 import Link from "next/link";
 
 type Props = {
@@ -18,10 +16,6 @@ type Props = {
 export default function NotesClient({ tag }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   const { data, isLoading } = useQuery({
     queryKey: ["notes", currentPage, searchQuery, tag],
@@ -56,6 +50,7 @@ export default function NotesClient({ tag }: Props) {
           href="/notes/action/create"
           aria-label="Create new note"
           className={css.button}
+          style={{ textDecoration: "none" }}
         >
           Create note +
         </Link>
@@ -64,11 +59,6 @@ export default function NotesClient({ tag }: Props) {
       {notes.length > 0 && <NoteList notes={notes} />}
       {!isLoading && notes.length === 0 && (
         <h2 style={{ textAlign: "center" }}>No search results</h2>
-      )}
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <NoteForm />
-        </Modal>
       )}
     </div>
   );
