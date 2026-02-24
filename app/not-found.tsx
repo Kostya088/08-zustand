@@ -2,12 +2,11 @@ export const metadata = {
   title: "404 - Page Not Found",
   description:
     "This page does not exist. The requested Note Hub page could not be found.",
-  url: "",
   openGraph: {
     title: "404 - Page Not Found",
     description:
       "This page does not exist. The requested Note Hub page could not be found.",
-    url: "",
+    url: "https://08-zustand-three-hazel.vercel.app/",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
