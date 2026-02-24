@@ -11,7 +11,7 @@ interface NoteDetailsProps {
   params: Promise<{ id: string }>;
 }
 
-export async function generateMetaData({
+export async function generateMetadata({
   params,
 }: NoteDetailsProps): Promise<Metadata> {
   const { id } = await params;

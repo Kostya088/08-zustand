@@ -1,4 +1,6 @@
-export const metadata = {
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "404 - Page Not Found",
   description:
     "This page does not exist. The requested Note Hub page could not be found.",

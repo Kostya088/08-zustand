@@ -5,7 +5,7 @@ type Props = {
   params: Promise<{ slug: string[] }>;
 };
 
-export async function generateMetaData({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const tag = slug[0] || "all";
   return {
